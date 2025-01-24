@@ -1,0 +1,571 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	background-color: #FFFEFF;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/** end reset css**/
+body {
+	max-width: 1140px;
+	margin:auto;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px   ;
+}
+
+section {
+	margin: 50px 0
+}
+
+h1{
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: #B1663C
+}
+
+h1 > span {
+	font-family: 'Work Sans';
+	font-size:10px;
+	letter-spacing: 0.1em;
+;
+}
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154
+}
+nav ul {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+
+}
+nav li {
+	padding: 0 10px;
+	font-size: 1.2em;
+}
+
+li:hover {
+	color: #B1663C;
+}
+#introduction {
+	display: flex;
+	align-items: center;
+}
+#introduction figure {
+	flex: 1
+}
+#introduction img {
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+
+#introduction article {
+	flex: 1
+}
+#introduction h2 {
+	margin-bottom: 1em;
+}
+
+#introduction p {
+	margin-bottom: 0.5em;
+}
+#portfolio h2 {
+	text-align: center;
+	
+}
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 100%;
+
+}
+#contact {
+	width: 50%;
+margin: auto;
+}
+#contact > * {
+	text-align: center;
+
+}
+#contact h2{
+	margin-bottom: 20px;
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label {
+	margin: 2em 0 1em 0;
+}
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em
+}
+
+
+#filter-container {
+	display: flex;
+	justify-content: center; /* Centre les boutons */
+	gap: 15px; /* Espace entre chaque bouton */
+	margin: 20px 0; /* Espacement avec les autres éléments */
+	list-style: none; /* Supprime les puces */
+	padding: 0;
+  }
+  
+  #filter-container li {
+	padding: 0; /* Supprime le padding interne du `<li>` */
+  }
+  
+  #filter-container li {
+	display: inline-block;
+	text-align: center; /* Centrer le texte */
+  }
+  
+  #filter-container li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px; /* Équilibre entre hauteur et largeur */
+	margin: 0;
+	border: 2px solid #2c6e49;
+	border-radius: 25px; /* Arrondi propre */
+	cursor: pointer;
+	background-color: transparent;
+	color: #2c6e49;
+	font-weight: bold;
+	font-family: 'Arial', sans-serif; /* Police propre */
+	font-size: 14px; /* Taille ajustée */
+	transition: all 0.3s ease; /* Animation fluide pour les interactions */
+  }
+  
+  #filter-container li.active {
+	background-color: #2c6e49; /* Couleur de fond pour l'élément actif */
+	color: #ffffff;
+  }
+  
+  #filter-container li:hover {
+	background-color: #2c6e49; /* Effet hover */
+	color: #ffffff;
+  }
+  
+ 
+
+.login{
+	text-decoration: none;
+	color: black;
+  }
+  .contact{
+	text-decoration: none;
+	color: black;
+  }
+  .projets{
+	text-decoration: none;
+	color: black;
+  }
+
+#login {
+	width: 50%;
+	margin: auto;
+}
+
+#login > * {
+	text-align: center;
+
+}
+
+#login h2{
+	margin-bottom: 20px;
+}
+
+#login form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#login input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login label {
+	margin: 2em 0 1em 0;
+}
+
+.portfolio-container {
+	display: flex;
+	align-items: center; /* Centre verticalement le bouton et le titre */
+	gap: 10px; /* Espace entre le titre et le bouton */
+	justify-content: center;
+	margin-bottom: 2em;
+	text-decoration: none;
+}
+
+#icona {
+	text-decoration: none;
+	color: black;
+	display: flex;
+	align-items: center; /* Centre l'icône et le texte verticalement */
+	justify-content: center; /* Centre horizontalement */
+	gap: 8px; /* Espace entre l'icône et le texte */
+	font-size: 14px; /* Taille de la police */
+	background-color: transparent; /* Fond transparent */
+	border: 0px solid #2E7464; /* Bordure verte */
+	border-radius: 5px; /* Bordures arrondies */
+	cursor: pointer; /* Indicateur interactif */
+}
+  
+#icona,  i {
+	font-size: 16px; /* Taille de l'icône */
+}
+
+.modal{
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-wrapper{
+	overflow: auto;
+	width: 600px;
+	max-width: calc(100vw -20px);
+	max-height: calc(100vh -20px);
+	padding: 20px;
+	background-color: #FFFEFF;
+}
+
+
+
+#admin-bar i{
+	font-size: 16px;
+	background-color: black;
+	
+}
+  
+
+#admin-bar {
+	display: none;
+	background-color: black;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	position: fixed; /* Fixe la barre en haut de la page */
+	top: 0;
+	left: 0;
+	width: 100%;
+	font-size: 16px;
+	height: 60px;
+	z-index: 1000;
+}
+  
+  
+#admin-bar.visible {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap:15PX;
+}
+  
+
+body.user-logged-in header {
+	margin-top: 10%; /* Ajoute un espace sous la barre noire uniquement si connecté */
+}
+  
+
+.gallery-modal {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	padding: 20px;
+	
+}
+  
+.modal-image {
+	max-width: 100px;
+	min-height: 100PX;
+	transition: transform 0.3s ease;
+	cursor: pointer;
+}
+  
+.modal-image:hover {
+ transform: scale(1.05); /* Zoom au survol */
+}
+  
+
+  
+.gallery-item {
+	position: relative; /* Position relative pour contenir l'icône */
+	min-height: 100PX;
+	max-width: 100px;
+
+}
+  
+  
+.modal-image:hover {
+	transform: scale(1.05); /* Zoom au survol */
+}
+  
+.delete-icon {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 18px;
+	color: white;
+	background-color: rgba(0, 0, 0, 1); /* Fond semi-transparent */
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+  
+.delete-icon:hover {
+	transform: scale(1.2); /* Agrandissement au survol */
+	background-color: rgba(255, 0, 0, 0.8); /* Fond rouge au survol */
+}
+
+#titlemodal{
+	color: black;
+	font-family: 'Work Sans' ;
+	font-size: 26px;
+	font-weight: 400;
+	margin-top: 30px;
+}
+
+.bouton-envoie{
+	text-align: center;
+	background-color: #FFFEFF;
+}
+.add-photo-button {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin-top: 2em; /* Ajoutez un espace au-dessus */
+	width: 250px;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 60px;
+	padding: 20px 20px;
+	border: none;
+	display: inline-block; /* Nécessaire pour centrer dans un conteneur avec text-align */
+	cursor: pointer;
+}
+  
+.add-photo-button:hover {
+	background-color: #144d3c;
+}
+  
+.modal-header {
+	position: relative; /* Nécessaire pour positionner l'icône à droite */
+	display: flex;
+	align-items: center;
+	justify-content: center; /* Centre le titre horizontalement */
+	margin-bottom: 20px;
+}
+  
+.modal-header .js-modal-close {
+	position: absolute; /* Permet de positionner l'icône par rapport au parent */
+	top: 0;
+	right: 0;
+	background: none; /* Supprime le fond */
+	border: none; /* Supprime les bordures */
+	font-size: 24px; /* Taille de l'icône */
+	color: #000; /* Couleur par défaut */
+	cursor: pointer;
+	padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
+	line-height: 1; /* Assure un bon alignement */
+}
+  
+.modal-header .js-modal-close i {
+	font-size: 24px; /* Taille de l'icône Font Awesome */
+}
+  
+.modal-header .js-modal-close:hover {
+	color: #ff0000; /* Change la couleur de l'icône au survol */
+}
+  
+.form-group  {
+	margin-bottom: 20px;
+	
+}
+.fa-image:before{
+	font-size: 100px;
+	color: #B9C5CC;
+	background-color: #E8F1F6;
+	display: flex;
+}
+
+.fa-regular .fa-image :hover{
+	background-color: transparent;
+}
+
+.fa-regular .fa-image{
+	background-color: transparent;
+}
+
+
+.upload-label {
+	padding: 20px 0;
+	width: 500px;
+	height: 300px;
+	background-color: #E8F1F6;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	display: flex; /* Active Flexbox */
+  	flex-direction: column; /* Aligne les éléments verticalement */
+  	justify-content: center; /* Centre verticalement */
+  	align-items: center; /* Centre horizontalement (facultatif) */
+  	height: 100%; /* Assurez-vous que la hauteur est définie */
+	margin-bottom: 20px;
+}
+  
+ 
+.upload-label:hover {
+	background-color: #9494945e;
+}
+  
+.form-group input,
+.form-group select {
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.form-group1 p{
+	background-color: transparent;
+	font-weight: 400;
+	margin-top: 10px;
+}
+
+
+.form-actions {
+	text-align: center;
+}
+  
+  .validate-button {
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	background-color: #6c757d;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+  
+.validate-button:hover {
+	background-color: #5a6268;
+}
+
+  .add-photo-form{
+	justify-content: center;
+	background-color: #FFFEFF;
+}
+
+.ajouter-photo{
+	padding: 10px 30px;
+	border-radius: 50px;
+	border: none;
+	background-color:#CBD6DC ; 
+	margin-top: 10px;
+}
+
