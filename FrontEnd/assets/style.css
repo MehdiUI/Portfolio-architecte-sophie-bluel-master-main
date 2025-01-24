@@ -430,6 +430,7 @@ body.user-logged-in header {
 	text-align: center;
 	background-color: #FFFEFF;
 }
+
 .add-photo-button {
 	font-family: 'Syne';
 	font-weight: 700;
@@ -486,7 +487,6 @@ body.user-logged-in header {
 .fa-image:before{
 	font-size: 100px;
 	color: #B9C5CC;
-	background-color: #E8F1F6;
 	display: flex;
 }
 
@@ -500,7 +500,7 @@ body.user-logged-in header {
 
 
 .upload-label {
-	padding: 20px 0;
+	
 	width: 500px;
 	height: 300px;
 	background-color: #E8F1F6;
@@ -513,14 +513,16 @@ body.user-logged-in header {
   	justify-content: center; /* Centre verticalement */
   	align-items: center; /* Centre horizontalement (facultatif) */
   	height: 100%; /* Assurez-vous que la hauteur est définie */
-	margin-bottom: 20px;
+	
 }
   
  
 .upload-label:hover {
-	background-color: #9494945e;
+	background-color: #d0e7f3;
+	transition: background-color 0.3s ease; /* Ajoute une transition */
 }
   
+
 .form-group input,
 .form-group select {
 	width: 100%;
@@ -534,6 +536,7 @@ body.user-logged-in header {
 	background-color: transparent;
 	font-weight: 400;
 	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 
@@ -541,7 +544,7 @@ body.user-logged-in header {
 	text-align: center;
 }
   
-  .validate-button {
+.validate-button {
 	padding: 10px 20px;
 	font-size: 14px;
 	font-weight: bold;
@@ -569,3 +572,43 @@ body.user-logged-in header {
 	margin-top: 10px;
 }
 
+.upload-label .fa-image {
+    font-size: 100px;
+    color: #B9C5CC;
+    background-color: #E8F1F6;
+    display: flex;
+	margin-top: 10px;
+}
+
+.upload-label:hover .fa-image {
+    background-color: #d0e7f3;
+	transition: background-color 0.3s ease; /* Change le fond au survol */
+}
+
+.boutonValider{
+	display: flex; /* Active Flexbox */
+  	flex-direction: column; /* Aligne les éléments verticalement */
+  	justify-content: center; /* Centre verticalement */
+  	align-items: center; /* Centre horizontalement (facultatif) */
+}
+
+.addProjectButton {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin-top: 2em; /* Ajoutez un espace au-dessus */
+	width: 250px;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 60px;
+	padding: 20px 20px;
+	border: none;
+	display: inline-block; /* Nécessaire pour centrer dans un conteneur avec text-align */
+	cursor: pointer;
+	
+}
+  
+.addProjectButton:hover {
+	background-color: #144d3c;
+}

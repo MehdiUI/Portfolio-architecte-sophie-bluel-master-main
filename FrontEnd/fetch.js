@@ -330,11 +330,11 @@ function renderGalleryInModal(works) {
     galleryContainer.remove();
   }
 
-  // Créez un nouveau conteneur pour la galerie
-  galleryContainer = document.createElement('div');
-  galleryContainer.classList.add('gallery-modal');
+ // Créez un nouveau conteneur pour la galerie
+ galleryContainer = document.createElement('div');
+ galleryContainer.classList.add('gallery-modal');
 
-  // Ajoutez les images à la galerie
+  // Ajoutez les images à la galerie modale
   works.forEach((work) => {
     const workElement = document.createElement('div');
     workElement.classList.add('gallery-item');
@@ -350,8 +350,17 @@ function renderGalleryInModal(works) {
 
     // Ajoutez l'événement pour supprimer une image
     iconElement.addEventListener('click', function () {
+      const confirmDelete = confirm("Êtes-vous sûr de vouloir masquer ce projet ?");
+      if (!confirmDelete) return;
+
+      // Supprime l'élément de la galerie modale
       workElement.remove();
-      console.log(`Image supprimée : ${work.id}`);
+
+      // Supprime également dans la galerie principale
+      const mainGalleryItem = document.querySelector(`.gallery figure[data-id="${work.id}"]`);
+      if (mainGalleryItem) mainGalleryItem.remove();
+
+      console.log(`Projet masqué : ${work.id}`);
     });
 
     workElement.appendChild(imageElement);
@@ -359,7 +368,7 @@ function renderGalleryInModal(works) {
     galleryContainer.appendChild(workElement);
   });
 
-  // Ajoutez la galerie dans la modale
+  // Ajoutez la galerie modale dans la modale
   modalWrapper.appendChild(galleryContainer);
 
   // Ajoutez un séparateur sous la galerie (s'il n'existe pas déjà)
@@ -369,6 +378,7 @@ function renderGalleryInModal(works) {
     separator.classList.add('modal-separator');
     modalWrapper.appendChild(separator);
   }
+
 
   // Créez ou réutilisez la div "bouton-envoie" en la plaçant **après** la galerie
   let buttonContainer = modalWrapper.querySelector('.bouton-envoie');
@@ -397,6 +407,7 @@ function renderGalleryInModal(works) {
   modalWrapper.appendChild(separator);
   modalWrapper.appendChild(buttonContainer);
 }
+
 
 // Fonction pour gérer l'état du formulaire
 function toggleAddPhotoForm(showForm) {
