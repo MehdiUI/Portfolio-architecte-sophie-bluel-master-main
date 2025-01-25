@@ -657,4 +657,10 @@ body.user-logged-in header {
 	width: 250px;
   }
 
- 
+  .modal-image {
+    max-width: 100%; /* Limite la largeur à celle du conteneur */
+    max-height: 100%; /* Limite la hauteur à celle du conteneur */
+    object-fit: contain; /* Assure un ajustement proportionnel de l'image */
+    margin: auto; /* Centre l'image dans le conteneur */
+    display: block; /* Supprime les espaces invisibles liés à inline-block */
+}
