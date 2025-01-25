@@ -550,3 +550,83 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+async function addNewProject() {
+  const form = document.getElementById('photoForm');
+  const galleryContainer = document.querySelector('.gallery-modal');
+  const formContainer = document.querySelector('.add-photo-form');
+
+  if (!form || !galleryContainer || !formContainer) {
+    console.error("Un ou plusieurs éléments requis sont introuvables.");
+    return;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById('photoTitle').value;
+    const category = document.getElementById('photoCategory').value;
+    const imageInput = document.getElementById('imageUpload');
+    const image = imageInput.files[0];
+
+    if (!title || !category || !image) {
+      alert('Veuillez remplir tous les champs.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('category', category);
+    formData.append('image', image);
+
+    try {
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        throw new Error('Token introuvable. Veuillez vous connecter.');
+      }
+
+      const response = await fetch(`${API_CONFIG.url}works`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        const newWork = await response.json();
+        console.log('Nouveau projet ajouté:', newWork);
+
+        // Ajouter le projet à la galerie
+        const workElement = document.createElement('figure');
+        workElement.classList.add('gallery-item');
+
+        const imageElement = document.createElement('img');
+        imageElement.src = newWork.imageUrl; // URL retournée par l'API
+        imageElement.alt = newWork.title;
+
+        const captionElement = document.createElement('figcaption');
+        captionElement.textContent = newWork.title;
+
+        workElement.appendChild(imageElement);
+        workElement.appendChild(captionElement);
+        galleryContainer.appendChild(workElement);
+
+        // Réinitialiser le formulaire et afficher la galerie
+        form.reset();
+        galleryContainer.style.display = 'flex';
+        formContainer.style.display = 'none';
+      } else {
+        const errorText = await response.text();
+        console.error(`Erreur HTTP ${response.status}:`, errorText);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout du projet:', error);
+      alert('Erreur réseau. Veuillez vérifier votre connexion.');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  addNewProject();
+});
