@@ -349,8 +349,8 @@ footer nav ul {
 	left: 0;
 	width: 100%;
 	font-size: 16px;
-	height: 60px;
-	z-index: 1000;
+	height: 40px;
+	z-index: 1;
 }
   
   
@@ -612,3 +612,49 @@ body.user-logged-in header {
 .addProjectButton:hover {
 	background-color: #144d3c;
 }
+
+.modal-header .retour {
+	position: absolute; /* Permet de positionner l'icône par rapport au parent */
+	top: 0;
+	left: 0;
+	background: none; /* Supprime le fond */
+	border: none; /* Supprime les bordures */
+	font-size: 24px; /* Taille de l'icône */
+	color: #000; /* Couleur par défaut */
+	cursor: pointer;
+	padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
+	line-height: 1; /* Assure un bon alignement */
+}
+  
+.modal-header .retour i {
+	font-size: 24px; /* Taille de l'icône Font Awesome */
+}
+  
+.modal-header .retour:hover {
+	color: #144d3c; /* Change la couleur de l'icône au survol */
+}
+
+.boutonAjouter {
+	display: flex;
+	justify-content: center; /* Centre horizontalement */
+	margin-top: 10px; /* Ajoute un petit espace au-dessus */
+	padding: 20px 0; /* Espace autour du bouton */
+	background-color: white; /* Assure un contraste visuel avec la galerie */
+
+  }
+  
+  .addImageButton {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	border: none;
+	border-radius: 60px;
+	padding: 15px 30px;
+	cursor: pointer;
+	font-size: 14px;
+	text-align: center;
+	width: 250px;
+  }
+
+ 
