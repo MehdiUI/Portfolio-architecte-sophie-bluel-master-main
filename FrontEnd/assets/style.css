@@ -596,7 +596,6 @@ body.user-logged-in header {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
-	background-color: #1D6154;
 	margin-top: 2em; /* Ajoutez un espace au-dessus */
 	width: 250px;
 	font-size: 14px;
@@ -609,9 +608,7 @@ body.user-logged-in header {
 	
 }
   
-.addProjectButton:hover {
-	background-color: #144d3c;
-}
+
 
 .modal-header .retour {
 	position: absolute; /* Permet de positionner l'icône par rapport au parent */
@@ -624,6 +621,7 @@ body.user-logged-in header {
 	cursor: pointer;
 	padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
 	line-height: 1; /* Assure un bon alignement */
+	display: none;
 }
   
 .modal-header .retour i {
@@ -663,4 +661,34 @@ body.user-logged-in header {
     object-fit: contain; /* Assure un ajustement proportionnel de l'image */
     margin: auto; /* Centre l'image dans le conteneur */
     display: block; /* Supprime les espaces invisibles liés à inline-block */
+}
+
+.modal-wrapper.show-gallery .retour {
+    display: none;
+}
+
+.modal-wrapper.show-form .retour {
+    display: inline-block;
+}
+
+.addProjectButton {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #A7A7A7; /* Par défaut : désactivé */
+    margin-top: 2em;
+    width: 250px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 60px;
+    padding: 20px 20px;
+    border: none;
+    display: inline-block;
+    cursor: not-allowed; /* Indique qu'il n'est pas cliquable */
+	transition: background-color 0.3s ease, cursor 0.3s ease;
+}
+
+.addProjectButton.enabled {
+    background-color: #1D6154; /* Couleur activée */
+    cursor: pointer; /* Change le curseur pour cliquer */
 }

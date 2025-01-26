@@ -364,22 +364,46 @@ function renderGalleryInModal(works) {
 
 
 function toggleAddPhotoForm(showForm) {
-    const galleryContainer = document.querySelector('.gallery-modal'); 
-    const formContainer = document.querySelector('.add-photo-form'); 
-  
-    if (!galleryContainer || !formContainer) {
+  const modalWrapper = document.querySelector('.modal-wrapper');
+  const galleryContainer = document.querySelector('.gallery-modal');
+  const formContainer = document.querySelector('.add-photo-form');
+  const retourButton = document.querySelector('.retour');
+
+  if (!modalWrapper || !galleryContainer || !formContainer || !retourButton) {
       console.error('Élément(s) manquant(s) : impossible de basculer entre la galerie et le formulaire.');
       return;
-    }
-  
-    if (showForm) {
-      galleryContainer.style.display = 'none'; 
-      formContainer.style.display = 'block'; 
-      galleryContainer.style.display = 'block'; 
-      formContainer.style.display = 'none'; 
-    }
+  }
+
+  if (showForm) {
+      // Affiche le formulaire et le bouton "Retour", cache la galerie
+      modalWrapper.classList.remove('show-gallery');
+      modalWrapper.classList.add('show-form');
+      galleryContainer.style.display = 'none';
+      formContainer.style.display = 'block';
+      retourButton.style.display = 'inline-block';
+  } else {
+      // Cache le formulaire, affiche la galerie, et cache le bouton "Retour"
+      modalWrapper.classList.remove('show-form');
+      modalWrapper.classList.add('show-gallery');
+      galleryContainer.style.display = 'flex';
+      formContainer.style.display = 'none';
+      retourButton.style.display = 'none';
+  }
 }
-  
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const addPhotoButton = document.querySelector('.addImageButton');
+  const retourButton = document.querySelector('.retour');
+
+  // Affiche le formulaire et le bouton "Retour" lorsqu'on clique sur "Ajouter une photo"
+  addPhotoButton.addEventListener('click', () => toggleAddPhotoForm(true));
+
+  // Reviens à la galerie et cache le bouton "Retour" lorsqu'on clique sur "Retour"
+  retourButton.addEventListener('click', () => toggleAddPhotoForm(false));
+});
 
 async function fetchAndRenderGalleryInModal() {
   try {
@@ -618,4 +642,39 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
     addProjectToAPI(); // Appelle la fonction pour ajouter le projet
   });
+});
+
+function updateValidateButtonState() {
+  const titleInput = document.getElementById('photoTitle');
+  const imageInput = document.getElementById('imageUpload');
+  const categorySelect = document.getElementById('photoCategory');
+  const validateButton = document.querySelector('.addProjectButton');
+
+  // Vérifie si tous les champs sont remplis
+  const isFormValid =
+      titleInput.value.trim() !== '' &&
+      imageInput.files.length > 0 &&
+      categorySelect.value.trim() !== '';
+
+  if (isFormValid) {
+      validateButton.classList.add('enabled'); // Ajoute la classe pour activer le bouton
+      validateButton.disabled = false; // Active le bouton
+  } else {
+      validateButton.classList.remove('enabled'); // Retire la classe
+      validateButton.disabled = true; // Désactive le bouton
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const titleInput = document.getElementById('photoTitle');
+  const imageInput = document.getElementById('imageUpload');
+  const categorySelect = document.getElementById('photoCategory');
+
+  // Ajoute un écouteur sur chaque champ pour vérifier l'état du formulaire
+  titleInput.addEventListener('input', updateValidateButtonState);
+  imageInput.addEventListener('change', updateValidateButtonState);
+  categorySelect.addEventListener('change', updateValidateButtonState);
+
+  // Initialise l'état du bouton lors du chargement de la page
+  updateValidateButtonState();
 });
