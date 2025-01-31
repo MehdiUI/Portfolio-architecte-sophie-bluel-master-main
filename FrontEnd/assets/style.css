@@ -191,46 +191,46 @@ footer nav ul {
 
 #filter-container {
 	display: flex;
-	justify-content: center; /* Centre les boutons */
-	gap: 15px; /* Espace entre chaque bouton */
-	margin: 20px 0; /* Espacement avec les autres éléments */
-	list-style: none; /* Supprime les puces */
+	justify-content: center; 
+	gap: 15px; 
+	margin: 20px 0; 
+	list-style: none; 
 	padding: 0;
   }
   
   #filter-container li {
-	padding: 0; /* Supprime le padding interne du `<li>` */
+	padding: 0; 
   }
   
   #filter-container li {
 	display: inline-block;
-	text-align: center; /* Centrer le texte */
+	text-align: center; 
   }
   
   #filter-container li {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10px 20px; /* Équilibre entre hauteur et largeur */
+	padding: 10px 20px; 
 	margin: 0;
 	border: 2px solid #2c6e49;
-	border-radius: 25px; /* Arrondi propre */
+	border-radius: 25px; 
 	cursor: pointer;
 	background-color: transparent;
 	color: #2c6e49;
 	font-weight: bold;
-	font-family: 'Arial', sans-serif; /* Police propre */
-	font-size: 14px; /* Taille ajustée */
-	transition: all 0.3s ease; /* Animation fluide pour les interactions */
+	font-family: 'Arial', sans-serif; 
+	font-size: 14px; 
+	transition: all 0.3s ease; 
   }
   
   #filter-container li.active {
-	background-color: #2c6e49; /* Couleur de fond pour l'élément actif */
+	background-color: #2c6e49; 
 	color: #ffffff;
   }
   
   #filter-container li:hover {
-	background-color: #2c6e49; /* Effet hover */
+	background-color: #2c6e49; 
 	color: #ffffff;
   }
   
@@ -283,8 +283,8 @@ footer nav ul {
 
 .portfolio-container {
 	display: flex;
-	align-items: center; /* Centre verticalement le bouton et le titre */
-	gap: 10px; /* Espace entre le titre et le bouton */
+	align-items: center; 
+	gap: 10px; 
 	justify-content: center;
 	margin-bottom: 2em;
 	text-decoration: none;
@@ -294,18 +294,18 @@ footer nav ul {
 	text-decoration: none;
 	color: black;
 	display: flex;
-	align-items: center; /* Centre l'icône et le texte verticalement */
-	justify-content: center; /* Centre horizontalement */
-	gap: 8px; /* Espace entre l'icône et le texte */
-	font-size: 14px; /* Taille de la police */
-	background-color: transparent; /* Fond transparent */
-	border: 0px solid #2E7464; /* Bordure verte */
-	border-radius: 5px; /* Bordures arrondies */
-	cursor: pointer; /* Indicateur interactif */
+	align-items: center; 
+	justify-content: center;
+	gap: 8px; 
+	font-size: 14px; 
+	background-color: transparent; 
+	border: 0px solid #2E7464; 
+	border-radius: 5px; 
+	cursor: pointer; 
 }
   
 #icona,  i {
-	font-size: 16px; /* Taille de l'icône */
+	font-size: 16px; 
 }
 
 .modal{
@@ -344,7 +344,7 @@ footer nav ul {
 	color: white;
 	padding: 10px;
 	text-align: center;
-	position: fixed; /* Fixe la barre en haut de la page */
+	position: fixed; 
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -363,7 +363,7 @@ footer nav ul {
   
 
 body.user-logged-in header {
-	margin-top: 10%; /* Ajoute un espace sous la barre noire uniquement si connecté */
+	margin-top: 10%; 
 }
   
 
@@ -383,13 +383,13 @@ body.user-logged-in header {
 }
   
 .modal-image:hover {
- transform: scale(1.05); /* Zoom au survol */
+ transform: scale(1.05); 
 }
   
 
   
 .gallery-item {
-	position: relative; /* Position relative pour contenir l'icône */
+	position: relative; 
 	min-height: 100PX;
 	max-width: 100px;
 
@@ -397,7 +397,7 @@ body.user-logged-in header {
   
   
 .modal-image:hover {
-	transform: scale(1.05); /* Zoom au survol */
+	transform: scale(1.05); 
 }
   
 .delete-icon {
@@ -406,7 +406,7 @@ body.user-logged-in header {
 	right: 10px;
 	font-size: 18px;
 	color: white;
-	background-color: rgba(0, 0, 0, 1); /* Fond semi-transparent */
+	background-color: rgba(0, 0, 0, 1); 
 	padding: 5px;
 	border-radius: 5px;
 	cursor: pointer;
@@ -414,8 +414,8 @@ body.user-logged-in header {
 }
   
 .delete-icon:hover {
-	transform: scale(1.2); /* Agrandissement au survol */
-	background-color: rgba(255, 0, 0, 0.8); /* Fond rouge au survol */
+	transform: scale(1.2); 
+	background-color: rgba(255, 0, 0, 0.8); 
 }
 
 #titlemodal{
@@ -436,14 +436,14 @@ body.user-logged-in header {
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin-top: 2em; /* Ajoutez un espace au-dessus */
+	margin-top: 2em; 
 	width: 250px;
 	font-size: 14px;
 	text-align: center;
 	border-radius: 60px;
 	padding: 20px 20px;
 	border: none;
-	display: inline-block; /* Nécessaire pour centrer dans un conteneur avec text-align */
+	display: inline-block; 
 	cursor: pointer;
 }
   
@@ -452,36 +452,37 @@ body.user-logged-in header {
 }
   
 .modal-header {
-	position: relative; /* Nécessaire pour positionner l'icône à droite */
+	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: center; /* Centre le titre horizontalement */
+	justify-content: center;
 	margin-bottom: 20px;
 }
   
 .modal-header .js-modal-close {
-	position: absolute; /* Permet de positionner l'icône par rapport au parent */
+	position: absolute; 
 	top: 0;
 	right: 0;
-	background: none; /* Supprime le fond */
-	border: none; /* Supprime les bordures */
-	font-size: 24px; /* Taille de l'icône */
-	color: #000; /* Couleur par défaut */
+	background: none; 
+	border: none; 
+	font-size: 24px; 
+	color: #000; 
 	cursor: pointer;
-	padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
-	line-height: 1; /* Assure un bon alignement */
+	padding: 10px; 
+	line-height: 1; 
 }
   
 .modal-header .js-modal-close i {
-	font-size: 24px; /* Taille de l'icône Font Awesome */
+	font-size: 24px; 
 }
   
 .modal-header .js-modal-close:hover {
-	color: #ff0000; /* Change la couleur de l'icône au survol */
+	color: #ff0000; 
 }
   
 .form-group  {
 	margin-bottom: 20px;
+	margin-top: 20px;
 	
 }
 .fa-image:before{
@@ -508,18 +509,18 @@ body.user-logged-in header {
 	font-weight: bold;
 	cursor: pointer;
 	border-radius: 5px;
-	display: flex; /* Active Flexbox */
-  	flex-direction: column; /* Aligne les éléments verticalement */
-  	justify-content: center; /* Centre verticalement */
-  	align-items: center; /* Centre horizontalement (facultatif) */
-  	height: 100%; /* Assurez-vous que la hauteur est définie */
+	display: flex; 
+  	flex-direction: column; 
+  	justify-content: center; 
+  	align-items: center; 
+  	height: 100%; 
 	
 }
   
  
 .upload-label:hover {
-	background-color: #d0e7f3;
-	transition: background-color 0.3s ease; /* Ajoute une transition */
+	transition: background-color 0.3s ease; 
+	border:  solid 1px black;
 }
   
 
@@ -539,7 +540,17 @@ body.user-logged-in header {
 	margin-bottom: 20px;
 }
 
+#photoTitle{
+	width: 95%;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
 
+#photoCategory{
+	width: 100%;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
 .form-actions {
 	text-align: center;
 }
@@ -580,30 +591,32 @@ body.user-logged-in header {
 	margin-top: 10px;
 }
 
+form-group1
 .upload-label:hover .fa-image {
     background-color: #d0e7f3;
-	transition: background-color 0.3s ease; /* Change le fond au survol */
+	transition: background-color 0.3s ease; 
+	
 }
 
 .boutonValider{
-	display: flex; /* Active Flexbox */
-  	flex-direction: column; /* Aligne les éléments verticalement */
-  	justify-content: center; /* Centre verticalement */
-  	align-items: center; /* Centre horizontalement (facultatif) */
+	display: flex;
+  	flex-direction: column; 
+  	justify-content: center; 
+  	align-items: center; 
 }
 
 .addProjectButton {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
-	margin-top: 2em; /* Ajoutez un espace au-dessus */
+	margin-top: 2em; 
 	width: 250px;
 	font-size: 14px;
 	text-align: center;
 	border-radius: 60px;
 	padding: 20px 20px;
 	border: none;
-	display: inline-block; /* Nécessaire pour centrer dans un conteneur avec text-align */
+	display: inline-block; 
 	cursor: pointer;
 	
 }
@@ -611,33 +624,33 @@ body.user-logged-in header {
 
 
 .modal-header .retour {
-	position: absolute; /* Permet de positionner l'icône par rapport au parent */
+	position: absolute; 
 	top: 0;
 	left: 0;
-	background: none; /* Supprime le fond */
-	border: none; /* Supprime les bordures */
-	font-size: 24px; /* Taille de l'icône */
-	color: #000; /* Couleur par défaut */
+	background: none; 
+	border: none; 
+	font-size: 24px; 
+	color: #000; 
 	cursor: pointer;
-	padding: 10px; /* Ajoute un peu d'espace autour de l'icône */
-	line-height: 1; /* Assure un bon alignement */
+	padding: 10px; 
+	line-height: 1; 
 	display: none;
 }
   
 .modal-header .retour i {
-	font-size: 24px; /* Taille de l'icône Font Awesome */
+	font-size: 24px; 
 }
   
 .modal-header .retour:hover {
-	color: #144d3c; /* Change la couleur de l'icône au survol */
+	color: #144d3c; 
 }
 
 .boutonAjouter {
 	display: flex;
-	justify-content: center; /* Centre horizontalement */
-	margin-top: 10px; /* Ajoute un petit espace au-dessus */
-	padding: 20px 0; /* Espace autour du bouton */
-	background-color: white; /* Assure un contraste visuel avec la galerie */
+	justify-content: center; 
+	margin-top: 10px;
+	padding: 20px 0; 
+	background-color: white; 
 
   }
   
@@ -656,11 +669,11 @@ body.user-logged-in header {
   }
 
   .modal-image {
-    max-width: 100%; /* Limite la largeur à celle du conteneur */
-    max-height: 100%; /* Limite la hauteur à celle du conteneur */
-    object-fit: contain; /* Assure un ajustement proportionnel de l'image */
-    margin: auto; /* Centre l'image dans le conteneur */
-    display: block; /* Supprime les espaces invisibles liés à inline-block */
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+    margin: auto; 
+    display: block; 
 }
 
 .modal-wrapper.show-gallery .retour {
@@ -675,7 +688,7 @@ body.user-logged-in header {
     font-family: 'Syne';
     font-weight: 700;
     color: white;
-    background-color: #A7A7A7; /* Par défaut : désactivé */
+    background-color: #A7A7A7; 
     margin-top: 2em;
     width: 250px;
     font-size: 14px;
@@ -684,11 +697,11 @@ body.user-logged-in header {
     padding: 20px 20px;
     border: none;
     display: inline-block;
-    cursor: not-allowed; /* Indique qu'il n'est pas cliquable */
+    cursor: not-allowed; 
 	transition: background-color 0.3s ease, cursor 0.3s ease;
 }
 
 .addProjectButton.enabled {
-    background-color: #1D6154; /* Couleur activée */
-    cursor: pointer; /* Change le curseur pour cliquer */
+    background-color: #1D6154;
+    cursor: pointer; 
 }

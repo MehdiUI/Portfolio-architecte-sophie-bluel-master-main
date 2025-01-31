@@ -322,7 +322,7 @@ function renderGalleryInModal(works) {
 
   let galleryContainer = modalWrapper.querySelector('.gallery-modal');
   if (galleryContainer) {
-    galleryContainer.innerHTML = ''; // Réinitialise le contenu
+    galleryContainer.innerHTML = ''; 
   } else {
     galleryContainer = document.createElement('div');
     galleryContainer.classList.add('gallery-modal');
@@ -349,7 +349,7 @@ function renderGalleryInModal(works) {
       if (confirmDelete) {
         const success = await deleteWork(work.id);
         if (success) {
-          workElement.remove(); // Supprime l'élément visuellement
+          workElement.remove(); 
         }
       }
     });
@@ -375,14 +375,14 @@ function toggleAddPhotoForm(showForm) {
   }
 
   if (showForm) {
-      // Affiche le formulaire et le bouton "Retour", cache la galerie
+      
       modalWrapper.classList.remove('show-gallery');
       modalWrapper.classList.add('show-form');
       galleryContainer.style.display = 'none';
       formContainer.style.display = 'block';
       retourButton.style.display = 'inline-block';
   } else {
-      // Cache le formulaire, affiche la galerie, et cache le bouton "Retour"
+      
       modalWrapper.classList.remove('show-form');
       modalWrapper.classList.add('show-gallery');
       galleryContainer.style.display = 'flex';
@@ -398,10 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const addPhotoButton = document.querySelector('.addImageButton');
   const retourButton = document.querySelector('.retour');
 
-  // Affiche le formulaire et le bouton "Retour" lorsqu'on clique sur "Ajouter une photo"
+
   addPhotoButton.addEventListener('click', () => toggleAddPhotoForm(true));
 
-  // Reviens à la galerie et cache le bouton "Retour" lorsqu'on clique sur "Retour"
   retourButton.addEventListener('click', () => toggleAddPhotoForm(false));
 });
 
@@ -540,14 +539,14 @@ async function populateCategories() {
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', async () => {
-  const works = await fetchWorks(); // Charge les projets au chargemen
-  populateCategories(); // Charge les catégories
+  const works = await fetchWorks(); 
+  populateCategories(); 
  
 });
 
 async function deleteWork(workId) {
   try {
-    const token = localStorage.getItem('authToken'); // Vérifier si l'utilisateur est connecté
+    const token = localStorage.getItem('authToken'); 
     if (!token) throw new Error('Utilisateur non authentifié.');
 
     const response = await fetch(`${API_CONFIG.url}works/${workId}`, {
@@ -560,7 +559,7 @@ async function deleteWork(workId) {
 
     if (response.ok) {
       console.log(`Projet avec l'ID ${workId} supprimé.`);
-      // Supprimer l'élément de la galerie après suppression de l'API
+      
       const workElement = document.querySelector(`figure[data-id="${workId}"]`);
       if (workElement) workElement.remove();
 
@@ -590,24 +589,24 @@ async function addProjectToAPI() {
     return;
   }
 
-  // Construction des données à envoyer
+
   const formData = new FormData();
   formData.append('title', title);
   formData.append('image', imageFile);
   formData.append('category', categoryId);
 
   try {
-    const token = localStorage.getItem('authToken'); // Vérification du token
+    const token = localStorage.getItem('authToken'); 
     if (!token) {
       alert('Vous devez être connecté pour ajouter un projet.');
       return;
     }
 
-    // Envoi de la requête POST
+ 
     const response = await fetch(`${API_CONFIG.url}works`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`, // Token pour l'authentification
+        Authorization: `Bearer ${token}`, 
       },
       body: formData,
     });
@@ -616,15 +615,15 @@ async function addProjectToAPI() {
       const newProject = await response.json();
       console.log('Projet ajouté avec succès :', newProject);
 
-      // Réinitialisation du formulaire
+
       titleInput.value = '';
       imageInput.value = '';
       categorySelect.value = '';
 
       // Mise à jour des galeries
       const works = await fetchWorks();
-      renderGallery(works); // Met à jour la galerie principale
-      renderGalleryInModal(works); // Met à jour la galerie de la modal
+      renderGallery(works); 
+      renderGalleryInModal(works); 
     } else {
       const errorText = await response.text();
       console.error('Erreur lors de l\'ajout du projet :', errorText);
@@ -639,8 +638,8 @@ async function addProjectToAPI() {
 document.addEventListener('DOMContentLoaded', () => {
   const addProjectButton = document.querySelector('.addProjectButton');
   addProjectButton.addEventListener('click', (event) => {
-    event.preventDefault(); // Empêche la soumission par défaut du formulaire
-    addProjectToAPI(); // Appelle la fonction pour ajouter le projet
+    event.preventDefault(); 
+    addProjectToAPI(); 
   });
 });
 
@@ -650,18 +649,18 @@ function updateValidateButtonState() {
   const categorySelect = document.getElementById('photoCategory');
   const validateButton = document.querySelector('.addProjectButton');
 
-  // Vérifie si tous les champs sont remplis
+  
   const isFormValid =
       titleInput.value.trim() !== '' &&
       imageInput.files.length > 0 &&
       categorySelect.value.trim() !== '';
 
   if (isFormValid) {
-      validateButton.classList.add('enabled'); // Ajoute la classe pour activer le bouton
-      validateButton.disabled = false; // Active le bouton
+      validateButton.classList.add('enabled'); 
+      validateButton.disabled = false; 
   } else {
-      validateButton.classList.remove('enabled'); // Retire la classe
-      validateButton.disabled = true; // Désactive le bouton
+      validateButton.classList.remove('enabled'); 
+      validateButton.disabled = true; 
   }
 }
 
@@ -670,11 +669,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const imageInput = document.getElementById('imageUpload');
   const categorySelect = document.getElementById('photoCategory');
 
-  // Ajoute un écouteur sur chaque champ pour vérifier l'état du formulaire
+  
   titleInput.addEventListener('input', updateValidateButtonState);
   imageInput.addEventListener('change', updateValidateButtonState);
   categorySelect.addEventListener('change', updateValidateButtonState);
 
-  // Initialise l'état du bouton lors du chargement de la page
+
   updateValidateButtonState();
 });
