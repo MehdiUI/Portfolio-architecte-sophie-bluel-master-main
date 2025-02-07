@@ -22,7 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	background-color: #FFFEFF;
+	background-color: #fffef8;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	
 }
 ol, ul {
 	list-style: none;
@@ -182,11 +183,30 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
-footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
+
+
+
+
+footer nav li {
+    width: 100%;
+    background-color: white; /* Assure-toi que le footer est bien blanc */
+    padding: 20px 0;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centre le contenu horizontalement */
 }
+
+.mentions {
+    width: 100%;
+    max-width: 1140px; /* Garde l'alignement avec le contenu */
+    margin: 0 auto; /* Centre le bloc mentions */
+    display: flex;
+    justify-content: flex-end; /* Aligne le texte à droite */
+    padding: 10px 20px; /* Ajoute un peu d'espace autour */
+	width: 100%;
+    background-color: white;
+}
+
 
 
 #filter-container {
@@ -326,7 +346,7 @@ footer nav ul {
 	max-width: calc(100vw -20px);
 	max-height: calc(100vh -20px);
 	padding: 20px;
-	background-color: #FFFEFF;
+	background-color: #FFFFFF;
 }
 
 
@@ -339,32 +359,33 @@ footer nav ul {
   
 
 #admin-bar {
-	display: none;
-	background-color: black;
-	color: white;
-	padding: 10px;
-	text-align: center;
-	position: fixed; 
-	top: 0;
-	left: 0;
-	width: 100%;
-	font-size: 16px;
-	height: 40px;
-	z-index: 1;
+    position: fixed;  /* Fixe le bandeau en haut */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    height: 40px;  /* Assure une hauteur fixe */
+    z-index: 1;
+    display: none;  /* Par défaut caché */
 }
-  
-  
-#admin-bar.visible {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap:15PX;
-}
-  
 
-body.user-logged-in header {
-	margin-top: 10%; 
+#admin-bar.visible {
+    display: flex; /* Affiché uniquement si l’utilisateur est connecté */
+    justify-content: center;
+    align-items: center;
+	
 }
+
+/* Empêcher le header d’être caché */
+body.user-logged-in {
+    padding-top: 50px !important;
+}
+
+
   
 
 .gallery-modal {
@@ -375,6 +396,7 @@ body.user-logged-in header {
 	
 }
   
+
 .modal-image {
 	max-width: 100px;
 	min-height: 100PX;
@@ -457,6 +479,7 @@ body.user-logged-in header {
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 20px;
+	background-color: white;
 }
   
 .modal-header .js-modal-close {
@@ -572,9 +595,19 @@ body.user-logged-in header {
 
   .add-photo-form{
 	justify-content: center;
-	background-color: #FFFEFF;
+	background-color: #ffffff;
 }
 
+#photoForm{
+	background-color: white;
+}
+.boutonValider{
+	background-color: white;
+}
+
+.form-group{
+	background-color: white;
+}
 .ajouter-photo{
 	padding: 10px 30px;
 	border-radius: 50px;
@@ -605,23 +638,14 @@ form-group1
   	align-items: center; 
 }
 
-.addProjectButton {
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	margin-top: 2em; 
-	width: 250px;
-	font-size: 14px;
-	text-align: center;
-	border-radius: 60px;
-	padding: 20px 20px;
-	border: none;
-	display: inline-block; 
-	cursor: pointer;
-	
-}
   
 
+hr{
+	width: 100%;
+	color: #000;
+	height: 0px;
+	margin-bottom: 50px;
+}
 
 .modal-header .retour {
 	position: absolute; 
@@ -649,8 +673,12 @@ form-group1
 	display: flex;
 	justify-content: center; 
 	margin-top: 10px;
-	padding: 20px 0; 
-	background-color: white; 
+	padding: 20px ; 
+	background-color: white;
+	flex-direction: column;
+	align-items: center;
+	
+	align-self: center;
 
   }
   
@@ -678,8 +706,12 @@ form-group1
 
 .modal-wrapper.show-gallery .retour {
     display: none;
+
 }
 
+.modal-wrapper .js-modal-stop {
+	background-color: white;
+}
 .modal-wrapper.show-form .retour {
     display: inline-block;
 }
@@ -689,12 +721,11 @@ form-group1
     font-weight: 700;
     color: white;
     background-color: #A7A7A7; 
-    margin-top: 2em;
     width: 250px;
     font-size: 14px;
     text-align: center;
     border-radius: 60px;
-    padding: 20px 20px;
+    padding: 20px ;
     border: none;
     display: inline-block;
     cursor: not-allowed; 
@@ -704,4 +735,10 @@ form-group1
 .addProjectButton.enabled {
     background-color: #1D6154;
     cursor: pointer; 
+}
+
+#message{
+	resize: none;
+	height: 174px;
+	
 }

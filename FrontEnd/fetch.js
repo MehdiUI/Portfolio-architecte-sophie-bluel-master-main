@@ -64,7 +64,6 @@ function createFilterButtons(works) {
   let filterContainer = document.getElementById('filter-container');
   const authToken = localStorage.getItem('authToken'); 
 
-  // Si connecté, ne crée pas les filtres
   if (authToken) {
     if (filterContainer) {
       filterContainer.remove(); 
@@ -156,23 +155,69 @@ async function loginUser(email, password) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+
+document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('loginForm');
-  form.addEventListener('submit', async function (event) {
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+
+  let emailError = document.getElementById('email-error');
+  let passwordError = document.getElementById('password-error');
+
+  if (!emailError) {
+    emailError = document.createElement('span');
+    emailError.id = 'email-error';
+    emailError.style.color = 'red';
+    emailInput.insertAdjacentElement('afterend', emailError);
+  }
+  
+  if (!passwordError) {
+    passwordError = document.createElement('span');
+    passwordError.id = 'password-error';
+    passwordError.style.color = 'red';
+    passwordInput.insertAdjacentElement('afterend', passwordError);
+  }
+
+  form.addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
 
     const result = await loginUser(email, password);
 
+    resetErreurs(); 
+
     if (result.success) {
+      console.log('Connexion réussie');
       localStorage.setItem('authToken', result.data.token);
       window.location.href = '/FrontEnd/index.html';
     } else {
-      alert('Email ou mot de passe incorrect. Veuillez réessayer.');
+      if (result.message.toLowerCase().includes("email")) {
+        afficherErreur(emailInput, emailError, "Email incorrect.");
+      } else if (result.message.toLowerCase().includes("mot de passe") || result.message.toLowerCase().includes("password")) {
+        afficherErreur(passwordInput, passwordError, "Mot de passe incorrect.");
+      } else {
+        afficherErreur(emailInput, emailError, "Email ou mot de passe incorrect.");
+        afficherErreur(passwordInput, passwordError, "Email ou mot de passe incorrect.");
+      }
     }
   });
+
+  function afficherErreur(input, errorSpan, message) {
+    errorSpan.textContent = message;
+    input.style.border = '2px solid red';
+  }
+
+  function resetErreurs() {
+    emailError.textContent = "";
+    passwordError.textContent = "";
+    emailInput.style.border = "1px solid #ccc";
+    passwordInput.style.border = "1px solid #ccc";
+  }
+
+  emailInput.addEventListener('input', resetErreurs);
+  passwordInput.addEventListener('input', resetErreurs);
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -278,17 +323,30 @@ const openModal = function (e) {
 };
 
 const closeModal = function (e) {
-  if (modal === null) return;
-  e.preventDefault();
+  if (modal === null) return; 
+
+  if (e && e.preventDefault) {
+      e.preventDefault();
+  }
+
   modal.style.display = 'none';
   modal.setAttribute('aria-hidden', 'true');
   modal.removeAttribute('aria-modal');
   modal.removeEventListener('click', closeModal);
-  modal.querySelector('.js-modal-close').removeEventListener('click', closeModal);
-  modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
+
+  const closeButton = modal.querySelector('.js-modal-close');
+  if (closeButton) closeButton.removeEventListener('click', closeModal);
+
+  const stopElement = modal.querySelector('.js-modal-stop');
+  if (stopElement) stopElement.removeEventListener('click', stopPropagation);
+
   modal = null;
   document.body.style.overflow = '';
+
+  console.log('✅ Modale fermée.');
 };
+
+
 
 const stopPropagation = function (e) {
   e.stopPropagation();
@@ -343,7 +401,7 @@ function renderGalleryInModal(works) {
     iconElement.classList.add('fa-solid', 'fa-trash-can', 'delete-icon');
     iconElement.title = 'Supprimer';
 
-    // Gestion de la suppression
+  
     iconElement.addEventListener('click', async () => {
       const confirmDelete = confirm(`Voulez-vous supprimer "${work.title}" ?`);
       if (confirmDelete) {
@@ -360,48 +418,39 @@ function renderGalleryInModal(works) {
   });
 }
 
-
-
-
 function toggleAddPhotoForm(showForm) {
   const modalWrapper = document.querySelector('.modal-wrapper');
   const galleryContainer = document.querySelector('.gallery-modal');
   const formContainer = document.querySelector('.add-photo-form');
   const retourButton = document.querySelector('.retour');
+  const modalSeparator = document.getElementById('modalSeparator'); 
 
-  if (!modalWrapper || !galleryContainer || !formContainer || !retourButton) {
+  if (!modalWrapper || !galleryContainer || !formContainer || !retourButton || !modalSeparator) {
       console.error('Élément(s) manquant(s) : impossible de basculer entre la galerie et le formulaire.');
       return;
   }
 
   if (showForm) {
-      
-      modalWrapper.classList.remove('show-gallery');
-      modalWrapper.classList.add('show-form');
+     
       galleryContainer.style.display = 'none';
       formContainer.style.display = 'block';
       retourButton.style.display = 'inline-block';
+      modalSeparator.style.display = 'none'; 
   } else {
       
-      modalWrapper.classList.remove('show-form');
-      modalWrapper.classList.add('show-gallery');
       galleryContainer.style.display = 'flex';
       formContainer.style.display = 'none';
       retourButton.style.display = 'none';
+      modalSeparator.style.display = 'block'; 
   }
 }
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const addPhotoButton = document.querySelector('.addImageButton');
   const retourButton = document.querySelector('.retour');
 
-
-  addPhotoButton.addEventListener('click', () => toggleAddPhotoForm(true));
-
-  retourButton.addEventListener('click', () => toggleAddPhotoForm(false));
+  addPhotoButton.addEventListener('click', () => toggleAddPhotoForm(true)); 
+  retourButton.addEventListener('click', () => toggleAddPhotoForm(false)); 
 });
 
 async function fetchAndRenderGalleryInModal() {
@@ -417,7 +466,6 @@ async function fetchAndRenderGalleryInModal() {
     console.error('Erreur lors de la récupération des données :', error);
   }
 }
-
 
 fetchAndRenderGalleryInModal();
 
@@ -465,7 +513,6 @@ fileInput.addEventListener('change', function (event) {
         return;
       }
 
-   
       const reader = new FileReader();
       reader.onload = function (e) {
  
@@ -502,7 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const formContainer = document.querySelector('.add-photo-form');
   const retourButton = document.querySelector('.retour');
 
-
   addPhotoButton.addEventListener('click', () => {
     galleryContainer.style.display = 'none'; 
     addPhotoButton.style.display = 'none'; 
@@ -537,7 +583,7 @@ async function populateCategories() {
   }
 }
 
-// Initialisation
+
 document.addEventListener('DOMContentLoaded', async () => {
   const works = await fetchWorks(); 
   populateCategories(); 
@@ -546,49 +592,55 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function deleteWork(workId) {
   try {
-    const token = localStorage.getItem('authToken'); 
-    if (!token) throw new Error('Utilisateur non authentifié.');
+      const token = localStorage.getItem('authToken'); 
+      if (!token) throw new Error('Utilisateur non authentifié.');
 
-    const response = await fetch(`${API_CONFIG.url}works/${workId}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
+      const response = await fetch(`${API_CONFIG.url}works/${workId}`, {
+          method: 'DELETE',
+          headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+          },
+      });
 
-    if (response.ok) {
-      console.log(`Projet avec l'ID ${workId} supprimé.`);
-      
-      const workElement = document.querySelector(`figure[data-id="${workId}"]`);
-      if (workElement) workElement.remove();
+      if (response.ok) {
+          console.log(`✅ Projet avec l'ID ${workId} supprimé.`);
 
-      return true;
-    } else {
-      console.error(`Erreur lors de la suppression du projet ${workId}:`, await response.text());
-      return false;
-    }
+          
+          const works = await fetchWorks();
+          renderGallery(works);
+          renderGalleryInModal(works);
+
+         
+          closeModal();
+          
+          return true;
+      } else {
+          console.error(`❌ Erreur lors de la suppression du projet ${workId}:`, await response.text());
+          return false;
+      }
   } catch (error) {
-    console.error('Erreur lors de la suppression:', error);
-    return false;
+      console.error('❌ Erreur lors de la suppression:', error);
+      return false;
   }
 }
+
+
+
 
 async function addProjectToAPI() {
   const titleInput = document.getElementById('photoTitle');
   const imageInput = document.getElementById('imageUpload');
   const categorySelect = document.getElementById('photoCategory');
-  
-  const title = titleInput.value;
+
+  const title = titleInput.value.trim();
   const imageFile = imageInput.files[0];
   const categoryId = categorySelect.value;
 
-  // Vérification des champs
   if (!title || !imageFile || !categoryId) {
-    alert('Veuillez remplir tous les champs avant de valider.');
-    return;
+      alert('Veuillez remplir tous les champs avant de valider.');
+      return;
   }
-
 
   const formData = new FormData();
   formData.append('title', title);
@@ -596,44 +648,37 @@ async function addProjectToAPI() {
   formData.append('category', categoryId);
 
   try {
-    const token = localStorage.getItem('authToken'); 
-    if (!token) {
-      alert('Vous devez être connecté pour ajouter un projet.');
-      return;
-    }
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+          alert('Vous devez être connecté pour ajouter un projet.');
+          return;
+      }
 
- 
-    const response = await fetch(`${API_CONFIG.url}works`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`, 
-      },
-      body: formData,
-    });
+      const response = await fetch(`${API_CONFIG.url}works`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+      });
 
-    if (response.ok) {
-      const newProject = await response.json();
-      console.log('Projet ajouté avec succès :', newProject);
-
-
-      titleInput.value = '';
-      imageInput.value = '';
-      categorySelect.value = '';
-
-      // Mise à jour des galeries
-      const works = await fetchWorks();
-      renderGallery(works); 
-      renderGalleryInModal(works); 
-    } else {
-      const errorText = await response.text();
-      console.error('Erreur lors de l\'ajout du projet :', errorText);
-      alert('Erreur lors de l\'ajout du projet. Veuillez réessayer.');
-    }
+      if (response.ok) {
+        console.log('✅ Projet ajouté avec succès');
+        resetForm();
+        closeModal(); 
+    
+        const works = await fetchWorks();
+        renderGallery(works);
+        renderGalleryInModal(works); 
+    }else {
+          console.error('❌ Erreur lors de l\'ajout du projet:', await response.text());
+          alert('Erreur lors de l\'ajout du projet.');
+      }
   } catch (error) {
-    console.error('Erreur lors de la requête POST :', error);
-    alert('Une erreur est survenue. Veuillez réessayer.');
+      console.error('❌ Erreur lors de la requête POST:', error);
+      alert('Une erreur est survenue. Veuillez réessayer.');
   }
 }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const addProjectButton = document.querySelector('.addProjectButton');
@@ -677,3 +722,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateValidateButtonState();
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const contactLink = document.querySelector('.contact'); 
+  const contactSection = document.getElementById('contact');
+
+  if (contactLink && contactSection) {
+      contactLink.addEventListener('click', function (event) {
+          event.preventDefault(); 
+
+          window.scrollTo({
+              top: contactSection.offsetTop - 50,  
+              behavior: 'smooth' 
+          });
+      });
+  }
+});
+
+function resetForm() {
+  const titleInput = document.getElementById('photoTitle');
+  const categorySelect = document.getElementById('photoCategory');
+  const imageInput = document.getElementById('imageUpload');
+  const uploadLabel = document.querySelector('.upload-label');
+
+  if (titleInput) titleInput.value = ''; 
+  if (categorySelect) categorySelect.value = ''; 
+
+
+  const previewImage = uploadLabel.querySelector('img');
+  if (previewImage) {
+      previewImage.remove();
+  }
+
+
+  if (imageInput) {
+      const newInput = document.createElement('input');
+      newInput.type = 'file';
+      newInput.id = 'imageUpload';
+      newInput.accept = 'image/png, image/jpeg';
+      newInput.style.display = 'none';
+
+      imageInput.replaceWith(newInput);
+  }
+
+
+  const iconElement = uploadLabel.querySelector('.fa-image');
+  const buttonElement = uploadLabel.querySelector('.ajouter-photo');
+  const textElement = uploadLabel.querySelector('p');
+
+  if (iconElement) iconElement.style.display = 'block';
+  if (buttonElement) buttonElement.style.display = 'block';
+  if (textElement) textElement.style.display = 'block';
+
+  console.log('✅ Formulaire complètement réinitialisé.');
+}
+
+

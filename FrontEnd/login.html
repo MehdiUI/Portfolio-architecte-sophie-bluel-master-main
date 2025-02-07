@@ -8,7 +8,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
-	<script type="module" src="fetch.js"></script>
+    <script type="module"  src="/FrontEnd/fetch.js"></script>
 	<link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/login.css">
    
@@ -31,8 +31,10 @@
 		<form id="loginForm">
 			<label for="email">E-mail</label>
 			<input type="email" name="email" id="email">
+            <span id="email-error" class="error-message"></span>
 			<label for="password">Mot de passe</label>
 			<input type="password" name="password" id="password">
+            <span id="password-error" class="error-message"></span>
             <input type="submit" value="se connecter">
             <a href="#" class="mdpReset">Mot de passe oublié</a>
 		</form>
