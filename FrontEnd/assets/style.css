@@ -22,17 +22,48 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	background-color: #fffef8;
+	
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
+html{
+	background-color: white;
+}
+
 body {
 	line-height: 1;
-	
+	margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le contenu */
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+	background-color: #fffef8;
+	width: 100%;
 }
+
+header {
+	display: flex;
+	justify-content: space-between;
+	padding: 60px 0px 0px 0px  ;
+	width: 100%;
+	max-width: 1140px;
+}
+
+main{
+	max-width: 1140px;
+    width: 100%;
+    padding: 0 20px; /* Évite des marges trop grandes */
+    box-sizing: border-box; /* Empêche le débordement */
+
+}
+
 ol, ul {
 	list-style: none;
 }
@@ -48,18 +79,11 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /** end reset css**/
-body {
-	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
-}
-header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px   ;
-}
+
+
+
 
 section {
 	margin: 50px 0
@@ -78,7 +102,7 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
+
 }
 
 h2{
@@ -101,10 +125,12 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
 }
+
 #introduction figure {
 	flex: 1
 }
@@ -164,9 +190,11 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -186,24 +214,30 @@ input[type="submit"]{
 
 
 
+main{
+	max-width: 1140px;
+}
 
 footer nav li {
     width: 100%;
-    background-color: white; /* Assure-toi que le footer est bien blanc */
+    background-color: #ffffff; 
     padding: 20px 0;
     position: relative;
     display: flex;
-    justify-content: center; /* Centre le contenu horizontalement */
+    justify-content: center; 
 }
 
+footer{
+	width: 	100%;
+	background-color: white;
+}
 .mentions {
-    width: 100%;
-    max-width: 1140px; /* Garde l'alignement avec le contenu */
-    margin: 0 auto; /* Centre le bloc mentions */
+   
+   
+    
     display: flex;
-    justify-content: flex-end; /* Aligne le texte à droite */
-    padding: 10px 20px; /* Ajoute un peu d'espace autour */
-	width: 100%;
+    justify-content: flex-end; 
+    padding: 10px 20px; 
     background-color: white;
 }
 
@@ -271,6 +305,8 @@ footer nav li {
 
 #login {
 	width: 50%;
+	max-width: 1140px;
+	
 	margin: auto;
 }
 
@@ -288,6 +324,7 @@ footer nav li {
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
+	padding: 0px 150px 0px 150px ;
 }
 
 #login input {
@@ -295,6 +332,7 @@ footer nav li {
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	
 }
 
 #login label {
@@ -371,6 +409,7 @@ footer nav li {
     height: 40px;  /* Assure une hauteur fixe */
     z-index: 1;
     display: none;  /* Par défaut caché */
+	gap: 10px;
 }
 
 #admin-bar.visible {
@@ -383,6 +422,7 @@ footer nav li {
 /* Empêcher le header d’être caché */
 body.user-logged-in {
     padding-top: 50px !important;
+	background-color: #fffef8;
 }
 
 
@@ -742,3 +782,5 @@ hr{
 	height: 174px;
 	
 }
+
+
