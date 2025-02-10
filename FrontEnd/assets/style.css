@@ -41,7 +41,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centre le contenu */
+    align-items: center; 
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background-color: #fffef8;
@@ -59,8 +59,8 @@ header {
 main{
 	max-width: 1140px;
     width: 100%;
-    padding: 0 20px; /* Évite des marges trop grandes */
-    box-sizing: border-box; /* Empêche le débordement */
+    padding: 0 20px; 
+    box-sizing: border-box; 
 
 }
 
@@ -397,7 +397,7 @@ footer{
   
 
 #admin-bar {
-    position: fixed;  /* Fixe le bandeau en haut */
+    position: fixed;  
     top: 0;
     left: 0;
     width: 100%;
@@ -406,20 +406,20 @@ footer{
     padding: 10px 0;
     text-align: center;
     font-size: 16px;
-    height: 40px;  /* Assure une hauteur fixe */
+    height: 40px;  
     z-index: 1;
-    display: none;  /* Par défaut caché */
+    display: none; 
 	gap: 10px;
 }
 
 #admin-bar.visible {
-    display: flex; /* Affiché uniquement si l’utilisateur est connecté */
+    display: flex; 
     justify-content: center;
     align-items: center;
 	
 }
 
-/* Empêcher le header d’être caché */
+
 body.user-logged-in {
     padding-top: 50px !important;
 	background-color: #fffef8;
