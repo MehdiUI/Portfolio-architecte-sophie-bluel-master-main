@@ -1,0 +1,786 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+html{
+	background-color: white;
+}
+
+body {
+	line-height: 1;
+	margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+	background-color: #fffef8;
+	width: 100%;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	padding: 60px 0px 0px 0px  ;
+	width: 100%;
+	max-width: 1140px;
+}
+
+main{
+	max-width: 1140px;
+    width: 100%;
+    padding: 0 20px; 
+    box-sizing: border-box; 
+
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/** end reset css**/
+
+
+
+
+section {
+	margin: 50px 0
+}
+
+h1{
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: #B1663C
+}
+
+h1 > span {
+	font-family: 'Work Sans';
+	font-size:10px;
+	letter-spacing: 0.1em;
+
+}
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154
+}
+nav ul {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+
+}
+nav li {
+	padding: 0 10px;
+	font-size: 1.2em;
+}
+
+li:hover {
+	color: #B1663C;
+}
+
+#introduction {
+	display: flex;
+	align-items: center;
+}
+
+#introduction figure {
+	flex: 1
+}
+#introduction img {
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+
+#introduction article {
+	flex: 1
+}
+#introduction h2 {
+	margin-bottom: 1em;
+}
+
+#introduction p {
+	margin-bottom: 0.5em;
+}
+#portfolio h2 {
+	text-align: center;
+	
+}
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 100%;
+
+}
+#contact {
+	width: 50%;
+margin: auto;
+}
+#contact > * {
+	text-align: center;
+
+}
+#contact h2{
+	margin-bottom: 20px;
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#contact label {
+	margin: 2em 0 1em 0;
+}
+
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+
+
+
+main{
+	max-width: 1140px;
+}
+
+footer nav li {
+    width: 100%;
+    background-color: #ffffff; 
+    padding: 20px 0;
+    position: relative;
+    display: flex;
+    justify-content: center; 
+}
+
+footer{
+	width: 	100%;
+	background-color: white;
+}
+.mentions {
+   
+   
+    
+    display: flex;
+    justify-content: flex-end; 
+    padding: 10px 20px; 
+    background-color: white;
+}
+
+
+
+#filter-container {
+	display: flex;
+	justify-content: center; 
+	gap: 15px; 
+	margin: 20px 0; 
+	list-style: none; 
+	padding: 0;
+  }
+  
+  #filter-container li {
+	padding: 0; 
+  }
+  
+  #filter-container li {
+	display: inline-block;
+	text-align: center; 
+  }
+  
+  #filter-container li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px; 
+	margin: 0;
+	border: 2px solid #2c6e49;
+	border-radius: 25px; 
+	cursor: pointer;
+	background-color: transparent;
+	color: #2c6e49;
+	font-weight: bold;
+	font-family: 'Arial', sans-serif; 
+	font-size: 14px; 
+	transition: all 0.3s ease; 
+  }
+  
+  #filter-container li.active {
+	background-color: #2c6e49; 
+	color: #ffffff;
+  }
+  
+  #filter-container li:hover {
+	background-color: #2c6e49; 
+	color: #ffffff;
+  }
+  
+ 
+
+.login{
+	text-decoration: none;
+	color: black;
+  }
+  .contact{
+	text-decoration: none;
+	color: black;
+  }
+  .projets{
+	text-decoration: none;
+	color: black;
+  }
+
+#login {
+	width: 50%;
+	max-width: 1140px;
+	
+	margin: auto;
+}
+
+#login > * {
+	text-align: center;
+
+}
+
+#login h2{
+	margin-bottom: 20px;
+}
+
+#login form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+	padding: 0px 150px 0px 150px ;
+}
+
+#login input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	
+}
+
+#login label {
+	margin: 2em 0 1em 0;
+}
+
+.portfolio-container {
+	display: flex;
+	align-items: center; 
+	gap: 10px; 
+	justify-content: center;
+	margin-bottom: 2em;
+	text-decoration: none;
+}
+
+#icona {
+	text-decoration: none;
+	color: black;
+	display: flex;
+	align-items: center; 
+	justify-content: center;
+	gap: 8px; 
+	font-size: 14px; 
+	background-color: transparent; 
+	border: 0px solid #2E7464; 
+	border-radius: 5px; 
+	cursor: pointer; 
+}
+  
+#icona,  i {
+	font-size: 16px; 
+}
+
+.modal{
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-wrapper{
+	overflow: auto;
+	width: 600px;
+	max-width: calc(100vw -20px);
+	max-height: calc(100vh -20px);
+	padding: 20px;
+	background-color: #FFFFFF;
+}
+
+
+
+#admin-bar i{
+	font-size: 16px;
+	background-color: black;
+	
+}
+  
+
+#admin-bar {
+    position: fixed;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    height: 40px;  
+    z-index: 1;
+    display: none; 
+	gap: 10px;
+}
+
+#admin-bar.visible {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+	
+}
+
+
+body.user-logged-in {
+    padding-top: 50px !important;
+	background-color: #fffef8;
+}
+
+
+  
+
+.gallery-modal {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	padding: 20px;
+	
+}
+  
+
+.modal-image {
+	max-width: 100px;
+	min-height: 100PX;
+	transition: transform 0.3s ease;
+	cursor: pointer;
+}
+  
+.modal-image:hover {
+ transform: scale(1.05); 
+}
+  
+
+  
+.gallery-item {
+	position: relative; 
+	min-height: 100PX;
+	max-width: 100px;
+
+}
+  
+  
+.modal-image:hover {
+	transform: scale(1.05); 
+}
+  
+.delete-icon {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 18px;
+	color: white;
+	background-color: rgba(0, 0, 0, 1); 
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+  
+.delete-icon:hover {
+	transform: scale(1.2); 
+	background-color: rgba(255, 0, 0, 0.8); 
+}
+
+#titlemodal{
+	color: black;
+	font-family: 'Work Sans' ;
+	font-size: 26px;
+	font-weight: 400;
+	margin-top: 30px;
+}
+
+.bouton-envoie{
+	text-align: center;
+	background-color: #FFFEFF;
+}
+
+.add-photo-button {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin-top: 2em; 
+	width: 250px;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 60px;
+	padding: 20px 20px;
+	border: none;
+	display: inline-block; 
+	cursor: pointer;
+}
+  
+.add-photo-button:hover {
+	background-color: #144d3c;
+}
+  
+.modal-header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	background-color: white;
+}
+  
+.modal-header .js-modal-close {
+	position: absolute; 
+	top: 0;
+	right: 0;
+	background: none; 
+	border: none; 
+	font-size: 24px; 
+	color: #000; 
+	cursor: pointer;
+	padding: 10px; 
+	line-height: 1; 
+}
+  
+.modal-header .js-modal-close i {
+	font-size: 24px; 
+}
+  
+.modal-header .js-modal-close:hover {
+	color: #ff0000; 
+}
+  
+.form-group  {
+	margin-bottom: 20px;
+	margin-top: 20px;
+	
+}
+.fa-image:before{
+	font-size: 100px;
+	color: #B9C5CC;
+	display: flex;
+}
+
+.fa-regular .fa-image :hover{
+	background-color: transparent;
+}
+
+.fa-regular .fa-image{
+	background-color: transparent;
+}
+
+
+.upload-label {
+	
+	width: 500px;
+	height: 300px;
+	background-color: #E8F1F6;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	display: flex; 
+  	flex-direction: column; 
+  	justify-content: center; 
+  	align-items: center; 
+  	height: 100%; 
+	
+}
+  
+ 
+.upload-label:hover {
+	transition: background-color 0.3s ease; 
+	border:  solid 1px black;
+}
+  
+
+.form-group input,
+.form-group select {
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.form-group1 p{
+	background-color: transparent;
+	font-weight: 400;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#photoTitle{
+	width: 95%;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#photoCategory{
+	width: 100%;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.form-actions {
+	text-align: center;
+}
+  
+.validate-button {
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	background-color: #6c757d;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+  
+.validate-button:hover {
+	background-color: #5a6268;
+}
+
+  .add-photo-form{
+	justify-content: center;
+	background-color: #ffffff;
+}
+
+#photoForm{
+	background-color: white;
+}
+.boutonValider{
+	background-color: white;
+}
+
+.form-group{
+	background-color: white;
+}
+.ajouter-photo{
+	padding: 10px 30px;
+	border-radius: 50px;
+	border: none;
+	background-color:#CBD6DC ; 
+	margin-top: 10px;
+}
+
+.upload-label .fa-image {
+    font-size: 100px;
+    color: #B9C5CC;
+    background-color: #E8F1F6;
+    display: flex;
+	margin-top: 10px;
+}
+
+form-group1
+.upload-label:hover .fa-image {
+    background-color: #d0e7f3;
+	transition: background-color 0.3s ease; 
+	
+}
+
+.boutonValider{
+	display: flex;
+  	flex-direction: column; 
+  	justify-content: center; 
+  	align-items: center; 
+}
+
+  
+
+hr{
+	width: 100%;
+	color: #000;
+	height: 0px;
+	margin-bottom: 50px;
+}
+
+.modal-header .retour {
+	position: absolute; 
+	top: 0;
+	left: 0;
+	background: none; 
+	border: none; 
+	font-size: 24px; 
+	color: #000; 
+	cursor: pointer;
+	padding: 10px; 
+	line-height: 1; 
+	display: none;
+}
+  
+.modal-header .retour i {
+	font-size: 24px; 
+}
+  
+.modal-header .retour:hover {
+	color: #144d3c; 
+}
+
+.boutonAjouter {
+	display: flex;
+	justify-content: center; 
+	margin-top: 10px;
+	padding: 20px ; 
+	background-color: white;
+	flex-direction: column;
+	align-items: center;
+	
+	align-self: center;
+
+  }
+  
+  .addImageButton {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	border: none;
+	border-radius: 60px;
+	padding: 15px 30px;
+	cursor: pointer;
+	font-size: 14px;
+	text-align: center;
+	width: 250px;
+  }
+
+  .modal-image {
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+    margin: auto; 
+    display: block; 
+}
+
+.modal-wrapper.show-gallery .retour {
+    display: none;
+
+}
+
+.modal-wrapper .js-modal-stop {
+	background-color: white;
+}
+.modal-wrapper.show-form .retour {
+    display: inline-block;
+}
+
+.addProjectButton {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: #A7A7A7; 
+    width: 250px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 60px;
+    padding: 20px ;
+    border: none;
+    display: inline-block;
+    cursor: not-allowed; 
+	transition: background-color 0.3s ease, cursor 0.3s ease;
+}
+
+.addProjectButton.enabled {
+    background-color: #1D6154;
+    cursor: pointer; 
+}
+
+#message{
+	resize: none;
+	height: 174px;
+	
+}
+
+
