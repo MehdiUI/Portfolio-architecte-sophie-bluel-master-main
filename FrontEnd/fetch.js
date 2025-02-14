@@ -759,36 +759,37 @@ function resetForm() {
   }
 
   if (imageInput) {
-      const newInput = document.createElement('input');
-      newInput.type = 'file';
-      newInput.id = 'imageUpload';
-      newInput.accept = 'image/png, image/jpeg';
-      newInput.style.display = 'none';
+    const newInput = document.createElement('input');
+    newInput.type = 'file';
+    newInput.id = 'imageUpload';
+    newInput.accept = 'image/png, image/jpeg';
+    newInput.style.display = 'none';
 
-      imageInput.replaceWith(newInput);
+    imageInput.replaceWith(newInput);
 
-      newInput.addEventListener('change', function (event) {
-          const file = event.target.files[0];
-          if (file) {
-              const reader = new FileReader();
-              reader.onload = function (e) {
-                  const existingImage = uploadLabel.querySelector('img');
-                  if (existingImage) {
-                      existingImage.src = e.target.result;
-                  } else {
-                      const newImage = document.createElement('img');
-                      newImage.src = e.target.result;
-                      newImage.alt = 'Aperçu';
-                      newImage.style.maxWidth = '100%';
-                      newImage.style.maxHeight = '200px';
-                      newImage.style.objectFit = 'contain';
-                      uploadLabel.appendChild(newImage);
-                  }
-              };
-              reader.readAsDataURL(file);
-          }
-      });
-  }
+    // **Réajouter l'écouteur d'événement pour l'aperçu de l'image**
+    newInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const existingImage = uploadLabel.querySelector('img');
+                if (existingImage) {
+                    existingImage.src = e.target.result;
+                } else {
+                    const newImage = document.createElement('img');
+                    newImage.src = e.target.result;
+                    newImage.alt = 'Aperçu';
+                    newImage.style.maxWidth = '100%';
+                    newImage.style.maxHeight = '200px';
+                    newImage.style.objectFit = 'contain';
+                    uploadLabel.appendChild(newImage);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
 
  
   const iconElement = uploadLabel.querySelector('.fa-image');
