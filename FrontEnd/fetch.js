@@ -611,7 +611,7 @@ async function deleteWork(workId) {
               const works = await fetchWorks();
               renderGallery(works);
               renderGalleryInModal(works);
-          }, 300); // Attendre 300ms pour éviter les conflits
+          }, 300); 
 
           closeModal();
           return true;
