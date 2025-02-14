@@ -752,12 +752,11 @@ function resetForm() {
   if (titleInput) titleInput.value = ''; 
   if (categorySelect) categorySelect.value = ''; 
 
-
+  
   const previewImage = uploadLabel.querySelector('img');
   if (previewImage) {
       previewImage.remove();
   }
-
 
   if (imageInput) {
       const newInput = document.createElement('input');
@@ -767,9 +766,31 @@ function resetForm() {
       newInput.style.display = 'none';
 
       imageInput.replaceWith(newInput);
+
+      newInput.addEventListener('change', function (event) {
+          const file = event.target.files[0];
+          if (file) {
+              const reader = new FileReader();
+              reader.onload = function (e) {
+                  const existingImage = uploadLabel.querySelector('img');
+                  if (existingImage) {
+                      existingImage.src = e.target.result;
+                  } else {
+                      const newImage = document.createElement('img');
+                      newImage.src = e.target.result;
+                      newImage.alt = 'Aperçu';
+                      newImage.style.maxWidth = '100%';
+                      newImage.style.maxHeight = '200px';
+                      newImage.style.objectFit = 'contain';
+                      uploadLabel.appendChild(newImage);
+                  }
+              };
+              reader.readAsDataURL(file);
+          }
+      });
   }
 
-
+ 
   const iconElement = uploadLabel.querySelector('.fa-image');
   const buttonElement = uploadLabel.querySelector('.ajouter-photo');
   const textElement = uploadLabel.querySelector('p');
@@ -778,7 +799,7 @@ function resetForm() {
   if (buttonElement) buttonElement.style.display = 'block';
   if (textElement) textElement.style.display = 'block';
 
-  console.log('✅ Formulaire complètement réinitialisé.');
+  console.log('✅ Formulaire complètement réinitialisé et écouteur d\'événement réajouté.');
 }
 
 
