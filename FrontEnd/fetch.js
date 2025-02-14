@@ -60,12 +60,13 @@ async function fetchCategories() {
   }
 }
 
+
 function createFilterButtons(works) {
   const portfolioSection = document.getElementById('portfolio');
   let filterContainer = document.getElementById('filter-container');
-  const authToken = localStorage.getItem('authToken'); 
+  
 
-  if (authToken) {
+  if (Token) {
     if (filterContainer) {
       filterContainer.remove(); 
     }
@@ -222,10 +223,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  const authToken = localStorage.getItem('authToken');
+  
 
-  if (authToken) {
-    console.log('Token récupéré depuis le localStorage :', authToken);
+  if (Token) {
+    console.log('Token récupéré depuis le localStorage :', Token);
   } else {
     console.log('Aucun token trouvé dans le localStorage.');
   }
@@ -240,9 +241,9 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-  const authToken = localStorage.getItem('authToken');
+  
 
-  if (authToken) {
+  if (Token) {
     loginLink.textContent = 'Logout';
     loginLink.href = '#';
     adminBar.classList.add('visible');
@@ -273,6 +274,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+const Token = localStorage.getItem('authToken'); 
+
 async function fetchWorksPost() {
   try {
     const formData = new FormData();
@@ -280,15 +283,15 @@ async function fetchWorksPost() {
     formData.append('category', 1);
     formData.append('image', new Blob(['fake image data'], { type: 'image/png' }));
 
-    const token = localStorage.getItem('authToken');
-    if (!token) {
+    
+    if (!Token) {
       throw new Error('Token introuvable dans localStorage. Veuillez vous connecter.');
     }
 
     const response = await fetch(`${API_CONFIG.url}works`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Token}`,
       },
       body: FormData,
     });
@@ -471,10 +474,10 @@ async function fetchAndRenderGalleryInModal() {
 fetchAndRenderGalleryInModal();
 
 document.addEventListener('DOMContentLoaded', function () {
-  const authToken = localStorage.getItem('authToken');
+ 
   const body = document.body;
 
-  if (authToken) {
+  if (Token) {
     body.classList.add('user-logged-in'); 
   } else {
     body.classList.remove('user-logged-in'); 
@@ -593,13 +596,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function deleteWork(workId) {
   try {
-      const token = localStorage.getItem('authToken'); 
-      if (!token) throw new Error('Utilisateur non authentifié.');
+      
+      if (!Token) throw new Error('Utilisateur non authentifié.');
 
       const response = await fetch(`${API_CONFIG.url}works/${workId}`, {
           method: 'DELETE',
           headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${Token}`,
               'Content-Type': 'application/json',
           },
       });
@@ -649,15 +652,15 @@ async function addProjectToAPI() {
   formData.append('category', categoryId);
 
   try {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
+     
+      if (!Token) {
           alert('Vous devez être connecté pour ajouter un projet.');
           return;
       }
 
       const response = await fetch(`${API_CONFIG.url}works`, {
           method: 'POST',
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${Token}` },
           body: formData,
       });
 
