@@ -12,11 +12,11 @@ async function fetchWorks() {
     });
 
     const works = await response.json();
-    console.log('Données récupérées:', works);
+   
     renderGallery(works);
     return works;
   } catch (error) {
-    console.error('Erreur lors de la récupération des données:', error);
+   
     return [];
   }
 }
@@ -24,7 +24,9 @@ async function fetchWorks() {
 
 function renderGallery(works) {
   const galleryContainer = document.querySelector('.gallery');
-  galleryContainer.innerHTML = '';
+  if (galleryContainer) {
+      galleryContainer.innerHTML = '';
+  }
 
   works.forEach((work) => {
     const workElement = document.createElement('figure');
@@ -52,10 +54,10 @@ async function fetchCategories() {
     });
 
     const categories = await response.json();
-    console.log('Données récupérées:', categories);
+   
     return categories;
   } catch (error) {
-    console.error('Erreur lors de la récupération des données:', error);
+ 
     return [];
   }
 }
@@ -126,11 +128,13 @@ function initGallery() {
       }
     })
     .catch((error) => {
-      console.error('Erreur lors de l\'initialisation de la galerie:', error);
+     
     });
 }
 
 initGallery();
+
+
 
 async function loginUser(email, password) {
   try {
@@ -157,11 +161,20 @@ async function loginUser(email, password) {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('loginForm');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      // Gestion de la connexion
+  });
+
+
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
+  
+  if (!emailInput || !passwordInput) return; 
 
   let emailError = document.getElementById('email-error');
   let passwordError = document.getElementById('password-error');
@@ -182,27 +195,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
   form.addEventListener('submit', async function(event) {
     event.preventDefault();
-
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
-
     const result = await loginUser(email, password);
-
-    resetErreurs(); 
+    resetErreurs();
 
     if (result.success) {
-      console.log('Connexion réussie');
       localStorage.setItem('authToken', result.data.token);
       window.location.href = '/FrontEnd/index.html';
     } else {
-      if (result.message.toLowerCase().includes("email")) {
-        afficherErreur(emailInput, emailError, "Email incorrect.");
-      } else if (result.message.toLowerCase().includes("mot de passe") || result.message.toLowerCase().includes("password")) {
-        afficherErreur(passwordInput, passwordError, "Mot de passe incorrect.");
-      } else {
-        afficherErreur(emailInput, emailError, "Email ou mot de passe incorrect.");
-        afficherErreur(passwordInput, passwordError, "Email ou mot de passe incorrect.");
-      }
+      afficherErreur(emailInput, emailError, "Email ou mot de passe incorrect.");
+      afficherErreur(passwordInput, passwordError, "Email ou mot de passe incorrect.");
     }
   });
 
@@ -222,15 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
   passwordInput.addEventListener('input', resetErreurs);
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  
-
-  if (Token) {
-    console.log('Token récupéré depuis le localStorage :', Token);
-  } else {
-    console.log('Aucun token trouvé dans le localStorage.');
-  }
-});
 
 document.addEventListener('DOMContentLoaded', function () {
   const iconLink = document.getElementById('icona');
@@ -301,10 +295,10 @@ async function fetchWorksPost() {
       return data;
     } else {
       const errorText = await response.text();
-      console.error(`Erreur HTTP ${response.status}:`, errorText);
+   
     }
   } catch (error) {
-    console.error('Erreur lors de la requête POST:', error);
+
   }
 }
 
@@ -347,7 +341,7 @@ const closeModal = function (e) {
   modal = null;
   document.body.style.overflow = '';
 
-  console.log('✅ Modale fermée.');
+
 };
 
 
@@ -378,17 +372,16 @@ function renderGalleryInModal(works) {
   const modalWrapper = document.querySelector('.modal-wrapper.js-modal-stop');
 
   if (!modalWrapper) {
-    console.error('Le conteneur modal-wrapper.js-modal-stop est introuvable.');
     return;
   }
 
   let galleryContainer = modalWrapper.querySelector('.gallery-modal');
-  if (galleryContainer) {
-    galleryContainer.innerHTML = ''; 
-  } else {
+  if (!galleryContainer) {
     galleryContainer = document.createElement('div');
     galleryContainer.classList.add('gallery-modal');
     modalWrapper.appendChild(galleryContainer);
+  } else {
+    galleryContainer.innerHTML = ''; // Vérification avant d'accéder à innerHTML
   }
 
   works.forEach((work) => {
@@ -405,13 +398,12 @@ function renderGalleryInModal(works) {
     iconElement.classList.add('fa-solid', 'fa-trash-can', 'delete-icon');
     iconElement.title = 'Supprimer';
 
-  
     iconElement.addEventListener('click', async () => {
       const confirmDelete = confirm(`Voulez-vous supprimer "${work.title}" ?`);
       if (confirmDelete) {
         const success = await deleteWork(work.id);
         if (success) {
-          workElement.remove(); 
+          workElement.remove();
         }
       }
     });
@@ -422,52 +414,92 @@ function renderGalleryInModal(works) {
   });
 }
 
-function toggleAddPhotoForm(showForm) {
-  const modalWrapper = document.querySelector('.modal-wrapper');
-  const galleryContainer = document.querySelector('.gallery-modal');
+
+
+function toggleAddPhotoForm(show) {
   const formContainer = document.querySelector('.add-photo-form');
+  const galleryContainer = document.querySelector('.gallery-modal');
   const retourButton = document.querySelector('.retour');
-  const modalSeparator = document.getElementById('modalSeparator'); 
+  const addPhotoButton = document.querySelector('.addImageButton');
 
-  if (!modalWrapper || !galleryContainer || !formContainer || !retourButton || !modalSeparator) {
-      console.error('Élément(s) manquant(s) : impossible de basculer entre la galerie et le formulaire.');
-      return;
-  }
-
-  if (showForm) {
-     
+  if (formContainer && galleryContainer && retourButton && addPhotoButton) {
+    if (show) {
+      formContainer.style.display = 'flex';
       galleryContainer.style.display = 'none';
-      formContainer.style.display = 'block';
       retourButton.style.display = 'inline-block';
-      modalSeparator.style.display = 'none'; 
-  } else {
-      
-      galleryContainer.style.display = 'flex';
+      addPhotoButton.style.display = 'none';
+    } else {
       formContainer.style.display = 'none';
+      galleryContainer.style.display = 'flex';
       retourButton.style.display = 'none';
-      modalSeparator.style.display = 'block'; 
+      addPhotoButton.style.display = 'block';
+    }
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const addPhotoButton = document.querySelector('.addImageButton');
-  const retourButton = document.querySelector('.retour');
+const button = document.querySelector('.addImageButton');
+if (button) {
+    button.addEventListener('click', () => {
+        
+    });
+}
 
-  addPhotoButton.addEventListener('click', () => toggleAddPhotoForm(true)); 
-  retourButton.addEventListener('click', () => toggleAddPhotoForm(false)); 
+document.addEventListener('DOMContentLoaded', function () {
+  function safeAddEventListener(selector, event, callback) {
+    const element = document.querySelector(selector);
+    if (element) {
+        element.addEventListener(event, callback);
+    } else {
+    
+    }
+}
+
+
+  // Ajout sécurisé des événements aux boutons
+  safeAddEventListener('.addImageButton', 'click', () => toggleAddPhotoForm(true));
+  safeAddEventListener('.retour', 'click', () => toggleAddPhotoForm(false));
+  safeAddEventListener('.addProjectButton', 'click', (event) => {
+    event.preventDefault();
+    addProjectToAPI();
+  });
 });
+
+
+
+/**
+ * Fonction qui attend l'apparition d'un élément dans le DOM
+ */
+function waitForElement(selector) {
+  return new Promise(resolve => {
+    const element = document.querySelector(selector);
+    if (element) return resolve(element);
+
+    const observer = new MutationObserver(() => {
+      const element = document.querySelector(selector);
+      if (element) {
+        observer.disconnect();
+        resolve(element);
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+}
+
+
+
 
 async function fetchAndRenderGalleryInModal() {
   try {
     const response = await fetch(`${API_CONFIG.url}works`);
     const works = await response.json();
 
-    console.log('Données récupérées :', works);
+  
 
     renderGalleryInModal(works);
    
   } catch (error) {
-    console.error('Erreur lors de la récupération des données :', error);
+    
   }
 }
 
@@ -489,63 +521,89 @@ buttonContainer.classList.add('bouton-envoie');
 
 const fileInput = document.getElementById('imageUpload');
 const uploadLabel = document.querySelector('.upload-label');
-const iconElement = uploadLabel.querySelector('.fa-image');
-const buttonElement = uploadLabel.querySelector('button');
-const textElement = uploadLabel.querySelector('p');
-
-
-uploadLabel.addEventListener('click', (event) => {
-  event.preventDefault(); 
-  if (fileInput) {
-    fileInput.click(); 
-  } else {
-    console.error('Input de type fichier introuvable.');
-  }
-});
-
-fileInput.addEventListener('change', function (event) {
-  const file = event.target.files[0]; 
-
-  if (file) {
- 
-    if (file.type.startsWith('image/')) {
-   
-      const maxFileSize = 4 * 1024 * 1024; 
-      if (file.size > maxFileSize) {
-        alert('La taille du fichier ne doit pas dépasser 4 Mo.');
-        fileInput.value = ''; 
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
- 
-        if (iconElement) iconElement.style.display = 'none';
-        if (buttonElement) buttonElement.style.display = 'none';
-        if (textElement) textElement.style.display = 'none';
-
-        const existingImage = uploadLabel.querySelector('img');
-        if (existingImage) {
-          existingImage.src = e.target.result; 
-        } else {
-         
-          const newImage = document.createElement('img');
-          newImage.src = e.target.result;
-          newImage.alt = 'Aperçu';
-          newImage.style.maxWidth = '100%'; 
-          newImage.style.maxHeight = '200px'; 
-          newImage.style.objectFit = 'contain'; 
-  
-          uploadLabel.appendChild(newImage);
-        }
-      };
-      reader.readAsDataURL(file); 
-    } else {
-      alert('Veuillez sélectionner une image valide (jpg, png).');
-      fileInput.value = ''; 
+if (uploadLabel) {
+    const previewImage = uploadLabel.querySelector('img');
+    if (previewImage) {
+        previewImage.remove();
     }
-  }
+}
+
+let iconElement = null;
+let buttonElement = null;
+let textElement = null;
+
+if (uploadLabel) {
+    iconElement = uploadLabel.querySelector('.fa-image');
+    buttonElement = uploadLabel.querySelector('button');
+    textElement = uploadLabel.querySelector('p');
+}
+
+
+if (uploadLabel) {
+  uploadLabel.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (fileInput) {
+          fileInput.click();
+      }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const fileInput = document.getElementById('imageUpload');
+
+  if (!fileInput) return; // ✅ Vérifie que fileInput existe avant d'exécuter le code
+
+  fileInput.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+
+    if (file) {
+      if (file.type.startsWith('image/')) {
+        const maxFileSize = 4 * 1024 * 1024;
+        if (file.size > maxFileSize) {
+          alert('La taille du fichier ne doit pas dépasser 4 Mo.');
+          fileInput.value = ''; 
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const uploadLabel = document.querySelector('.upload-label');
+          if (uploadLabel) {
+            const iconElement = uploadLabel.querySelector('.fa-image');
+            const buttonElement = uploadLabel.querySelector('.ajouter-photo');
+            const textElement = uploadLabel.querySelector('p');
+
+            if (iconElement) iconElement.style.display = 'none';
+            if (buttonElement) buttonElement.style.display = 'none';
+            if (textElement) textElement.style.display = 'none';
+
+            const existingImage = uploadLabel.querySelector('img');
+            if (existingImage) {
+              existingImage.src = e.target.result;
+            } else {
+              const newImage = document.createElement('img');
+              newImage.src = e.target.result;
+              newImage.alt = 'Aperçu';
+              newImage.style.maxWidth = '100%';
+              newImage.style.maxHeight = '200px';
+              newImage.style.objectFit = 'contain';
+              uploadLabel.appendChild(newImage);
+            }
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Veuillez sélectionner une image valide (jpg, png).');
+        fileInput.value = ''; 
+      }
+    }
+  });
 });
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const galleryContainer = document.querySelector('.gallery-modal');
@@ -553,20 +611,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const formContainer = document.querySelector('.add-photo-form');
   const retourButton = document.querySelector('.retour');
 
-  addPhotoButton.addEventListener('click', () => {
-    galleryContainer.style.display = 'none'; 
-    addPhotoButton.style.display = 'none'; 
-    retourButton.style.display = 'inline-block'; 
-    formContainer.style.display = 'flex'; 
-  });
+  if (addPhotoButton && galleryContainer && formContainer && retourButton) {
+    addPhotoButton.addEventListener('click', () => {
+      galleryContainer.style.display = 'none'; 
+      addPhotoButton.style.display = 'none'; 
+      retourButton.style.display = 'inline-block'; 
+      formContainer.style.display = 'flex'; 
+    });
 
-  retourButton.addEventListener('click', () => {
-    galleryContainer.style.display = 'flex';
-    addPhotoButton.style.display = 'block'; 
-    retourButton.style.display = 'none'; 
-    formContainer.style.display = 'none'; 
-  });
+    retourButton.addEventListener('click', () => {
+      galleryContainer.style.display = 'flex';
+      addPhotoButton.style.display = 'block'; 
+      retourButton.style.display = 'none'; 
+      formContainer.style.display = 'none'; 
+    });
+  }
 });
+
 
 
 async function populateCategories() {
@@ -583,7 +644,7 @@ async function populateCategories() {
       });
     }
   } catch (error) {
-    console.error('Erreur lors de la récupération des catégories:', error);
+
   }
 }
 
@@ -608,7 +669,7 @@ async function deleteWork(workId) {
       });
 
       if (response.ok) {
-          console.log(`✅ Projet avec l'ID ${workId} supprimé.`);
+         
 
           setTimeout(async () => {
               const works = await fetchWorks();
@@ -619,11 +680,11 @@ async function deleteWork(workId) {
           closeModal();
           return true;
       } else {
-          console.error(`❌ Erreur lors de la suppression du projet ${workId}:`, await response.text());
+          
           return false;
       }
   } catch (error) {
-      console.error('❌ Erreur lors de la suppression:', error);
+     
       return false;
   }
 }
@@ -665,7 +726,7 @@ async function addProjectToAPI() {
       });
 
       if (response.ok) {
-        console.log('✅ Projet ajouté avec succès');
+      
         resetForm();
         closeModal(); 
     
@@ -673,24 +734,15 @@ async function addProjectToAPI() {
         renderGallery(works);
         renderGalleryInModal(works); 
     }else {
-          console.error('❌ Erreur lors de l\'ajout du projet:', await response.text());
+          
           alert('Erreur lors de l\'ajout du projet.');
       }
   } catch (error) {
-      console.error('❌ Erreur lors de la requête POST:', error);
+     
       alert('Une erreur est survenue. Veuillez réessayer.');
   }
 }
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const addProjectButton = document.querySelector('.addProjectButton');
-  addProjectButton.addEventListener('click', (event) => {
-    event.preventDefault(); 
-    addProjectToAPI(); 
-  });
-});
 
 function updateValidateButtonState() {
   const titleInput = document.getElementById('photoTitle');
@@ -698,7 +750,11 @@ function updateValidateButtonState() {
   const categorySelect = document.getElementById('photoCategory');
   const validateButton = document.querySelector('.addProjectButton');
 
-  
+  // Ajout de cette vérification
+  if (!titleInput || !imageInput || !categorySelect || !validateButton) {
+    return; // Sort de la fonction si un élément est manquant
+  }
+
   const isFormValid =
       titleInput.value.trim() !== '' &&
       imageInput.files.length > 0 &&
@@ -718,14 +774,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const imageInput = document.getElementById('imageUpload');
   const categorySelect = document.getElementById('photoCategory');
 
-  
-  titleInput.addEventListener('input', updateValidateButtonState);
-  imageInput.addEventListener('change', updateValidateButtonState);
-  categorySelect.addEventListener('change', updateValidateButtonState);
+  if (titleInput) {
+    titleInput.addEventListener('input', updateValidateButtonState);
+  } else {
+ 
+  }
 
+  if (imageInput) {
+    imageInput.addEventListener('change', updateValidateButtonState);
+  } else {
+ 
+  }
 
-  updateValidateButtonState();
+  if (categorySelect) {
+    categorySelect.addEventListener('change', updateValidateButtonState);
+  } else {
+ 
+  }
+ updateValidateButtonState();
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const contactLink = document.querySelector('.contact'); 
@@ -800,7 +868,7 @@ function resetForm() {
   if (buttonElement) buttonElement.style.display = 'block';
   if (textElement) textElement.style.display = 'block';
 
-  console.log('✅ Formulaire complètement réinitialisé et écouteur d\'événement réajouté.');
+  
 }
 
 
