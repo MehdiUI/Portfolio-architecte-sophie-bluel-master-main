@@ -21,6 +21,7 @@ async function fetchWorks() {
   }
 }
 
+
 function renderGallery(works) {
   const galleryContainer = document.querySelector('.gallery');
   galleryContainer.innerHTML = '';
@@ -606,14 +607,13 @@ async function deleteWork(workId) {
       if (response.ok) {
           console.log(`✅ Projet avec l'ID ${workId} supprimé.`);
 
-          
-          const works = await fetchWorks();
-          renderGallery(works);
-          renderGalleryInModal(works);
+          setTimeout(async () => {
+              const works = await fetchWorks();
+              renderGallery(works);
+              renderGalleryInModal(works);
+          }, 300); // Attendre 300ms pour éviter les conflits
 
-         
           closeModal();
-          
           return true;
       } else {
           console.error(`❌ Erreur lors de la suppression du projet ${workId}:`, await response.text());
@@ -624,6 +624,7 @@ async function deleteWork(workId) {
       return false;
   }
 }
+
 
 
 
