@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   form.addEventListener('submit', async function(event) {
       event.preventDefault();
-      // Gestion de la connexion
+      
   });
 
 
@@ -381,7 +381,7 @@ function renderGalleryInModal(works) {
     galleryContainer.classList.add('gallery-modal');
     modalWrapper.appendChild(galleryContainer);
   } else {
-    galleryContainer.innerHTML = ''; // Vérification avant d'accéder à innerHTML
+    galleryContainer.innerHTML = ''; 
   }
 
   works.forEach((work) => {
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
 
-  // Ajout sécurisé des événements aux boutons
+  
   safeAddEventListener('.addImageButton', 'click', () => toggleAddPhotoForm(true));
   safeAddEventListener('.retour', 'click', () => toggleAddPhotoForm(false));
   safeAddEventListener('.addProjectButton', 'click', (event) => {
@@ -551,7 +551,7 @@ if (uploadLabel) {
 document.addEventListener('DOMContentLoaded', function () {
   const fileInput = document.getElementById('imageUpload');
 
-  if (!fileInput) return; // ✅ Vérifie que fileInput existe avant d'exécuter le code
+  if (!fileInput) return;
 
   fileInput.addEventListener('change', function (event) {
     const file = event.target.files[0];
@@ -750,9 +750,9 @@ function updateValidateButtonState() {
   const categorySelect = document.getElementById('photoCategory');
   const validateButton = document.querySelector('.addProjectButton');
 
-  // Ajout de cette vérification
+
   if (!titleInput || !imageInput || !categorySelect || !validateButton) {
-    return; // Sort de la fonction si un élément est manquant
+    return; 
   }
 
   const isFormValid =
@@ -872,3 +872,29 @@ function resetForm() {
 }
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  const titleModal = document.getElementById('titlemodal');
+  const addPhotoButton = document.querySelector('.addImageButton');
+  const retourButton = document.querySelector('.retour');
+  const formSection = document.querySelector('.photo-form'); 
+  const gallerySection = document.querySelector('.photo-gallery'); 
+  const modalSeparator = document.getElementById('modalSeparator'); 
+
+  if (addPhotoButton) {
+      addPhotoButton.addEventListener('click', () => {
+          if (titleModal) titleModal.textContent = 'Ajout photo';
+          if (formSection) formSection.style.display = 'block';
+          if (gallerySection) gallerySection.style.display = 'none';
+          if (modalSeparator) modalSeparator.style.display = 'none'; 
+      });
+  }
+
+  if (retourButton) {
+      retourButton.addEventListener('click', () => {
+          if (titleModal) titleModal.textContent = 'Galerie photo';
+          if (formSection) formSection.style.display = 'none';
+          if (gallerySection) gallerySection.style.display = 'block';
+          if (modalSeparator) modalSeparator.style.display = 'block'; 
+      });
+  }
+});
