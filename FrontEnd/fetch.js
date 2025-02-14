@@ -767,7 +767,7 @@ function resetForm() {
 
     imageInput.replaceWith(newInput);
 
-    // **Réajouter l'écouteur d'événement pour l'aperçu de l'image**
+   
     newInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
